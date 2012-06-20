@@ -1,0 +1,8 @@
+\definecolor{rrblitbackground}{rgb}{0.0, 0.0, 0.0}
+
+\title[Python White Magic]{Python White Magic}
+\author[antocuni]
+{Antonio Cuni}
+
+\institute{EuroPython 2012}
+\date{July 3 2012}
