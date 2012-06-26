@@ -282,28 +282,35 @@ Spell #1: ``rebind_globals``
 
 .. image:: diagrams/LOAD_GLOBAL-p0.pdf
    :align: center
-   :scale: 40%
+   :scale: 30%
 
 ``LOAD_GLOBAL`` explained
 ==========================
 
 .. image:: diagrams/LOAD_GLOBAL-p1.pdf
    :align: center
-   :scale: 40%
+   :scale: 30%
 
 ``LOAD_GLOBAL`` explained
 ==========================
 
 .. image:: diagrams/LOAD_GLOBAL-p2.pdf
    :align: center
-   :scale: 40%
+   :scale: 30%
 
 ``LOAD_GLOBAL`` explained
 ==========================
 
 .. image:: diagrams/LOAD_GLOBAL-p3.pdf
    :align: center
-   :scale: 40%
+   :scale: 30%
+
+``LOAD_GLOBAL`` explained
+==========================
+
+.. image:: diagrams/LOAD_GLOBAL-p4.pdf
+   :align: center
+   :scale: 30%
 
 
 ``LOAD_GLOBAL`` explained
