@@ -33,6 +33,8 @@ About this talk
 
 - they improve the rest of the code
 
+- (you might not like them)
+
 
 Python
 ======
@@ -316,42 +318,6 @@ Spell #1: ``rebind_globals``
 ``LOAD_GLOBAL`` explained
 ==========================
 
-|scriptsize|
-|column1|
-|example<| |small| dis(pdb.set_trace) |end_small| |>|
-
-.. sourcecode:: python
-
-   0 LOAD_GLOBAL       0 (Pdb)
-   3 CALL_FUNCTION     0
-   ...
-
-|end_example|
-|column2|
-
-|example<| |small| pdbpp.py |end_small| |>|
-
-.. sourcecode:: python
-
-   import pdb
-   class Pdb(pdb.Pdb):
-       ...
-
-|pause|
-
-.. sourcecode:: python
-
-
-   def set_trace():
-       pdb.set_trace() # ???
-
-   def main():
-       pdb.main()      # ???
-
-
-   ...
-
-|end_example|
-|end_columns|
-|end_scriptsize|
-
+.. image:: diagrams/LOAD_GLOBAL-p5.pdf
+   :align: center
+   :scale: 30%

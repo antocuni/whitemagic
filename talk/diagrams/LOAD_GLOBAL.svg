@@ -53,10 +53,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="528.09599"
+     inkscape:cx="369.52456"
      inkscape:cy="379.02744"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1029"
@@ -97,30 +97,34 @@
          sodipodi:role="line"
          id="tspan3344"
          x="-151.42856"
-         y="-5.1920271">step0</tspan><tspan
+         y="-5.1920271">foo</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="19.807972"
-         id="tspan3348">+step1</tspan><tspan
+         id="tspan3348">+func_globals</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="44.807972"
-         id="tspan3350">+step2</tspan><tspan
+         id="tspan3350">+func_code</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="69.807976"
-         id="tspan3352">+step3</tspan><tspan
+         id="tspan3352">+co_code</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="94.807976"
-         id="tspan5764">+step4</tspan><tspan
+         id="tspan5764">+load_global</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="119.80798"
-         id="tspan4891" /><tspan
+         id="tspan3093">+foo2</tspan><tspan
          sodipodi:role="line"
          x="-151.42856"
          y="144.80797"
+         id="tspan4891" /><tspan
+         sodipodi:role="line"
+         x="-151.42856"
+         y="169.80797"
          id="tspan3346" /></text>
     <flowRoot
        xml:space="preserve"
@@ -134,7 +138,7 @@
            y="-66.620598" /></flowRegion><flowPara
          id="flowPara5772" /></flowRoot>  </g>
   <g
-     inkscape:label="step0"
+     inkscape:label="foo"
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
@@ -195,12 +199,88 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="step1"
+     inkscape:label="func_globals"
      style="display:inline"
      transform="translate(38.589059,-12.80416)">
     <g
        style="display:inline"
        transform="matrix(1.7871944,0,0,1.7871944,-921.47196,1.3198471)"
+       id="g48">
+      <polygon
+         style="fill:#ffffff"
+         points="494.848,181.338 494.848,112.138 666.898,112.138 678.898,124.138 678.898,181.338 "
+         id="polygon50" />
+      <polygon
+         style="fill:none;stroke:#000000;stroke-width:1.60000002"
+         points="494.848,112.138 666.898,112.138 678.898,124.138 678.898,181.338 494.848,181.338 "
+         id="polygon52"
+         transform="matrix(0.85955076,0,0,1,69.501025,0)" />
+      <polyline
+         style="fill:none;stroke:#000000;stroke-width:0.80000001"
+         points="666.898,112.138 666.898,124.138 678.898,124.138 "
+         id="polyline54"
+         transform="matrix(0.85955076,0,0,1,69.501025,0)" />
+      <text
+         style="font-size:10.23999977px;font-style:normal;font-weight:normal;text-anchor:start;fill:#000000;font-family:monospace"
+         x="501.64801"
+         y="134.48801"
+         id="text56">
+        <tspan
+           x="501.64801"
+           y="134.48801"
+           id="tspan58">{</tspan>
+        <tspan
+           x="501.64801"
+           y="147.28799"
+           id="tspan60">'foo': &lt;function'foo'&gt;,</tspan>
+        <tspan
+           x="501.64801"
+           y="160.088"
+           id="tspan62">'A': 'hello',</tspan>
+        <tspan
+           x="501.64801"
+           y="172.888"
+           id="tspan64">}</tspan>
+      </text>
+    </g>
+    <g
+       style="display:inline"
+       transform="matrix(1.7871944,0,0,1.7871944,-921.47196,1.3198471)"
+       id="g74">
+      <polyline
+         style="fill:none;stroke:#000000;stroke-width:1.60000002"
+         points="661.4,41.4 586.873,41.4 586.873,101.338 "
+         id="polyline76" />
+      <polygon
+         style="fill:#000000"
+         points="591.873,101.338 581.873,101.338 586.873,111.338 "
+         id="polygon78" />
+      <polygon
+         style="fill:none;stroke:#000000;stroke-width:1.60000002"
+         points="591.873,101.338 581.873,101.338 586.873,111.338 "
+         id="polygon80" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="1245.7144"
+       y="403.37939"
+       id="text3318"
+       sodipodi:linespacing="125%"
+       transform="translate(-38.812141,12.81533)"><tspan
+         sodipodi:role="line"
+         x="1245.7144"
+         y="403.37939"
+         id="tspan3322" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="func_code"
+     style="display:inline">
+    <g
+       style="display:inline"
+       transform="matrix(1.7871944,0,0,1.7871944,-882.8829,-11.484313)"
        id="g26">
       <rect
          style="fill:#ffffff"
@@ -248,48 +328,7 @@
     </g>
     <g
        style="display:inline"
-       transform="matrix(1.7871944,0,0,1.7871944,-921.47196,1.3198471)"
-       id="g48">
-      <polygon
-         style="fill:#ffffff"
-         points="494.848,181.338 494.848,112.138 666.898,112.138 678.898,124.138 678.898,181.338 "
-         id="polygon50" />
-      <polygon
-         style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="494.848,112.138 666.898,112.138 678.898,124.138 678.898,181.338 494.848,181.338 "
-         id="polygon52"
-         transform="matrix(0.85955076,0,0,1,69.501025,0)" />
-      <polyline
-         style="fill:none;stroke:#000000;stroke-width:0.80000001"
-         points="666.898,112.138 666.898,124.138 678.898,124.138 "
-         id="polyline54"
-         transform="matrix(0.85955076,0,0,1,69.501025,0)" />
-      <text
-         style="font-size:10.23999977px;font-style:normal;font-weight:normal;text-anchor:start;fill:#000000;font-family:monospace"
-         x="501.64801"
-         y="134.48801"
-         id="text56">
-        <tspan
-           x="501.64801"
-           y="134.48801"
-           id="tspan58">{</tspan>
-        <tspan
-           x="501.64801"
-           y="147.28799"
-           id="tspan60">'foo': &lt;function'foo'&gt;,</tspan>
-        <tspan
-           x="501.64801"
-           y="160.088"
-           id="tspan62">'A': 'hello',</tspan>
-        <tspan
-           x="501.64801"
-           y="172.888"
-           id="tspan64">}</tspan>
-      </text>
-    </g>
-    <g
-       style="display:inline"
-       transform="matrix(1.7871944,0,0,1.7871944,-921.47196,1.3198471)"
+       transform="matrix(1.7871944,0,0,1.7871944,-882.8829,-11.484313)"
        id="g66">
       <polyline
          style="fill:none;stroke:#000000;stroke-width:1.60000002"
@@ -297,47 +336,18 @@
          id="polyline68" />
       <polygon
          style="fill:#000000"
-         points="878.629,90.3376 868.629,90.3376 873.629,100.338 "
+         points="868.629,90.3376 873.629,100.338 878.629,90.3376 "
          id="polygon70" />
       <polygon
          style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="878.629,90.3376 868.629,90.3376 873.629,100.338 "
+         points="868.629,90.3376 873.629,100.338 878.629,90.3376 "
          id="polygon72" />
     </g>
-    <g
-       style="display:inline"
-       transform="matrix(1.7871944,0,0,1.7871944,-921.47196,1.3198471)"
-       id="g74">
-      <polyline
-         style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="661.4,41.4 586.873,41.4 586.873,101.338 "
-         id="polyline76" />
-      <polygon
-         style="fill:#000000"
-         points="591.873,101.338 581.873,101.338 586.873,111.338 "
-         id="polygon78" />
-      <polygon
-         style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="591.873,101.338 581.873,101.338 586.873,111.338 "
-         id="polygon80" />
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="1245.7144"
-       y="403.37939"
-       id="text3318"
-       sodipodi:linespacing="125%"
-       transform="translate(-38.812141,12.81533)"><tspan
-         sodipodi:role="line"
-         x="1245.7144"
-         y="403.37939"
-         id="tspan3322" /></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="step2"
+     inkscape:label="co_code"
      style="display:inline"
      transform="translate(38.589059,-12.80416)">
     <g
@@ -393,18 +403,18 @@
          id="polyline104" />
       <polygon
          style="fill:#000000"
-         points="736.604,203.116 741.604,213.116 746.604,203.116 "
+         points="746.604,203.116 736.604,203.116 741.604,213.116 "
          id="polygon106" />
       <polygon
          style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="736.604,203.116 741.604,213.116 746.604,203.116 "
+         points="746.604,203.116 736.604,203.116 741.604,213.116 "
          id="polygon108" />
     </g>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="step3"
+     inkscape:label="load_global"
      style="display:inline"
      transform="translate(38.589059,-12.80416)">
     <g
@@ -417,18 +427,18 @@
          id="polyline112" />
       <polygon
          style="fill:#000000"
-         points="581.873,192.138 591.873,192.138 586.873,182.138 "
+         points="586.873,182.138 581.873,192.138 591.873,192.138 "
          id="polygon114" />
       <polygon
          style="fill:none;stroke:#000000;stroke-width:1.60000002"
-         points="581.873,192.138 591.873,192.138 586.873,182.138 "
+         points="586.873,182.138 581.873,192.138 591.873,192.138 "
          id="polygon116" />
     </g>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
-     inkscape:label="step4"
+     inkscape:label="foo2"
      style="display:inline"
      transform="translate(-0.22308176,0.01116982)">
     <g
@@ -493,12 +503,12 @@
          style="display:inline">
         <polygon
            id="polygon50-1"
-           points="678.898,124.138 678.898,181.338 494.848,181.338 494.848,112.138 666.898,112.138 "
+           points="666.898,112.138 678.898,124.138 678.898,181.338 494.848,181.338 494.848,112.138 "
            style="fill:#ffffff" />
         <polygon
            transform="matrix(0.85955076,0,0,1,69.501025,0)"
            id="polygon52-9"
-           points="678.898,181.338 494.848,181.338 494.848,112.138 666.898,112.138 678.898,124.138 "
+           points="678.898,124.138 678.898,181.338 494.848,181.338 494.848,112.138 666.898,112.138 "
            style="fill:none;stroke:#000000;stroke-width:1.60000002" />
         <polyline
            transform="matrix(0.85955076,0,0,1,69.501025,0)"
@@ -543,18 +553,18 @@
       </g>
     </g>
     <path
-       style="fill:none;stroke:#ff0000;stroke-width:2.897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutL)"
+       style="fill:none;stroke:#ff0000;stroke-width:2.89700007;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutL)"
        d="m 921.70316,89.047127 -151.52402,0 0,63.902953"
        id="path4339"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#ff0000;stroke-width:2.89256548999999996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutL)"
+       style="fill:none;stroke:#ff0000;stroke-width:2.89256549;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutL)"
        d="m 1164.5005,63.33063 94.3477,0 0,99.54094 -151.528,0 0,35.83474"
        id="path4523"
        inkscape:connector-curvature="0" />
     <path
        transform="translate(38.812141,-12.81533)"
-       style="display:inline;fill:none;stroke:#ff0000;stroke-width:2.81995629999999986;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.63991270999999994, 2.81995635999999994;stroke-dashoffset:0;marker-end:url(#TriangleOutL)"
+       style="fill:none;stroke:#ff0000;stroke-width:2.8199563;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.63991271, 2.81995636;stroke-dashoffset:0;marker-end:url(#TriangleOutL);display:inline"
        d="m 577.02769,429.15435 490.19051,0 0,-62.06392"
        id="path3123"
        inkscape:connector-curvature="0" />
