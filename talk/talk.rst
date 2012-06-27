@@ -246,8 +246,8 @@ Problem #1: extending pdb.py (3)
 - copy&paste is not a solution :-)
 
 
-Spell #1: ``rebind_globals``
-=============================
+Spell #1: ``rebind_globals`` (1)
+=================================
 
 
 |scriptsize|
@@ -321,3 +321,131 @@ Spell #1: ``rebind_globals``
 .. image:: diagrams/LOAD_GLOBAL-p5.pdf
    :align: center
    :scale: 30%
+
+
+Spell #1: ``rebind_globals`` (2)
+=================================
+
+|scriptsize|
+|example<| |small| magic.py |end_small| |>|
+
+.. sourcecode:: python
+
+    def rebind_globals(func, newglobals=None):
+        if newglobals is None:
+            newglobals = globals()
+        newfunc = types.FunctionType(func.func_code, 
+                                     newglobals, 
+                                     func.func_name,
+                                     func.func_defaults)
+        return newfunc
+
+
+|end_example|
+|end_scriptsize|
+
+
+Problem #1 solved
+==================
+
+
+|column1|
+|scriptsize|
+|example<| |small| pdbpp.py |end_small| |>|
+
+.. sourcecode:: python
+
+   import pdb
+   class Pdb(pdb.Pdb):
+       ...
+
+   set_trace = rebind_globals(
+             pdb.set_trace)
+   
+   main = rebind_globals(pdb.main)
+   ...
+
+|end_example|
+|end_scriptsize|
+|column2|
+
+|pause|
+|small|
+
+* Pros
+
+  - code reuse
+
+  - cross-version compatibility
+
+* Cons
+
+  - complexity
+
+  - fragility
+
+  - unexpected bugs (e.g. ``func_defaults``)
+
+|end_small|
+
+|end_columns|
+
+
+Problem #2: Open Classes
+=========================
+
+- Huge hierarchy of classes
+
+- Many (loosely related) features per class
+
+  * e.g. visitor pattern
+
+|pause|
+
+- two-axis split:
+
+  * by feature
+
+  * by class
+
+- Split the class among more files?
+
+  * no way in Python
+
+  * in Ruby: "open classes"
+
+
+Problem #2: the PyPy AST compiler
+=================================
+
+.. image:: diagrams/AST-p0.pdf
+   :align: center
+   :scale: 25%
+
+Problem #2: the PyPy AST compiler
+=================================
+
+.. image:: diagrams/AST-p1.pdf
+   :align: center
+   :scale: 25%
+
+Problem #2: the PyPy AST compiler
+=================================
+
+.. image:: diagrams/AST-p2.pdf
+   :align: center
+   :scale: 25%
+
+Problem #2: the PyPy AST compiler
+=================================
+
+.. image:: diagrams/AST-p3.pdf
+   :align: center
+   :scale: 25%
+
+Problem #2: the PyPy AST compiler
+=================================
+
+.. image:: diagrams/AST-p4.pdf
+   :align: center
+   :scale: 25%
