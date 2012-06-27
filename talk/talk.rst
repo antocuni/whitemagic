@@ -157,6 +157,7 @@ White magic
 
   * more maintainable
 
+
 - however:
 
   * lots of cons
@@ -450,8 +451,8 @@ Problem #2: the PyPy AST compiler
    :align: center
    :scale: 25%
 
-Spell #2: __extend__
-=====================
+Spell #2: __extend__ (1)
+========================
 
 |scriptsize|
 |example<| |small| python |end_small| |>|
@@ -485,8 +486,8 @@ Spell #2: __extend__
 |end_scriptsize|
 
 
-Metaclasses for dummies
-=======================
+Metaclasses for dummies (1)
+============================
 
 * Everything is an object
 
@@ -537,3 +538,324 @@ Metaclasses for dummies
 .. image:: diagrams/metaclass-p4.pdf
    :align: center
    :scale: 35%
+
+
+Metaclasses for dummies (2)
+============================
+
+* Find the metaclass (simplified)
+
+  - ``__metaclass__`` in the class body
+
+  - ``type(bases[0])`` (if any)
+
+  - global ``__metaclass__``
+
+|pause|
+
+* Call it!
+
+  - subclass of type (usually)
+
+  - override ``__new__``
+
+  - tweak the parameters?
+
+
+Spell #2: __extend__ (2)
+========================
+
+|scriptsize|
+|example<| |small| example |end_small| |>|
+
+.. sourcecode:: python
+
+    class A(object):
+        __metaclass__ = extendabletype
+    
+    class __extend__(A):
+        def bar(self): print 'bar'
+
+|end_example|
+|end_scriptsize|
+
+|pause|
+
+|scriptsize|
+|example<| |small| magic.py |end_small| |>|
+
+.. sourcecode:: python
+
+    class extendabletype(type):
+        def __new__(cls, name, bases, dict):
+            if name == '__extend__':
+                for cls in bases:
+                    for key, value in dict.items():
+                        if key == '__module__':
+                            continue
+                        setattr(cls, key, value)
+                return None
+            else:
+                return type.__new__(cls, name, bases, dict)
+
+|end_example|
+|end_scriptsize|
+
+
+Problem #2 solved
+==================
+
+
+|column1|
+|scriptsize|
+|example<| |small| astcompiler/ |end_small| |>|
+
+.. sourcecode:: python
+
+   # ast.py
+   class AST(...):
+     __metaclass__ = extendabletype
+     ...
+   class expr(AST): ...
+   class stmt(AST): ...
+
+|pause|
+
+.. sourcecode:: python
+
+   # asthelpers.py
+   class __extend__(AST):
+     def as_node_list(...): ...
+     def set_context(...):  ...
+
+   class __extend__(expr): ...
+   class __extend__(stmt): ...
+
+   # codegen.py  ...
+   # optimize.py ...
+
+|end_example|
+|end_scriptsize|
+|column2|
+
+|pause|
+|small|
+
+* Pros
+
+  - better organization
+
+  - well-contained
+
+  - easy to understand
+
+* Cons
+
+  - naming convention
+
+  - import-time side effects
+
+  - unobvious at first
+
+|end_small|
+
+|end_columns|
+
+
+Simple is better than complex
+===============================
+
+* Use as much much magic as actually needed
+
+|pause|
+
+* Example: Camelot admin classes
+
+  - ``Entity`` subclass for the data model
+
+  - ``Foo.Admin`` for UI stuff
+
+  - mixing business and presentation logic :-(
+
+|scriptsize|
+|example<| |small| model.py |end_small| |>|
+
+.. sourcecode:: python
+
+   class User(Entity):
+       name = Field(Unicode)
+       age = Field(Integer)
+
+       class Admin(EntityAdmin):
+           verbose_name = 'User'
+           field_list = ['name', 'age']
+
+|end_example|
+|end_scriptsize|
+
+
+Problem #3: wrong solution
+===========================
+
+|scriptsize|
+|column1|
+|example<| |small| model.py |end_small| |>|
+
+.. sourcecode:: python
+
+   class User(Entity):
+     __metaclass__ = \
+         extendabletype
+
+     name = Field(Unicode)
+     age = Field(Integer)
+
+|end_example|
+|column2|
+|pause|
+|example<| |small| admin.py |end_small| |>|
+
+.. sourcecode:: python
+
+   from model import User
+
+   class __extend__(User):
+     class Admin(EntityAdmin):
+       verbose_name = 'User detail'
+       field_list = ['name', 'age']
+
+|end_example|
+|end_columns|
+|end_scriptsize|
+
+|pause|
+
+* ``Entity`` has its own metaclass
+
+* metaclass conflict
+
+* there is a simpler solution anyway
+
+
+Spell #3: attach_to (not really magical)
+=========================================
+
+|scriptsize|
+|example<| |small| python |end_small| |>|
+
+.. sourcecode:: python
+
+    >>> from magic import attach_to
+    >>> 
+    >>> class Foo(object):
+    ...     pass
+    ... 
+    >>> @attach_to(Foo)
+    ... class Admin(object):
+    ...     verbose_name = 'My Foo'
+    ... 
+    >>> print Foo.Admin.verbose_name
+    My Foo
+
+|end_example|
+|end_scriptsize|
+
+
+Decorators
+==========
+
+* Syntactic sugar
+
+* class decorators only for Python >= 2.6
+
+|scriptsize|
+|column1|
+|example<| |small| decor1.py |end_small| |>|
+
+.. sourcecode:: python
+
+   @foo
+   def myfunc():
+       pass
+
+   @bar(42)
+   class MyClass(object):
+       pass
+  
+|end_example|
+|column2|
+|pause|
+|example<| |small| decor2.py |end_small| |>|
+
+.. sourcecode:: python
+
+   def myfunc():
+       pass
+   myfunc = foo(myfunc)
+
+   class MyClass(object):
+       pass
+   MyClass = bar(42)(MyClass)
+
+|end_example|
+|end_columns|
+|end_scriptsize|
+
+Spell #3: attach_to (not really magical)
+=========================================
+
+|scriptsize|
+|example<| |small| magic.py |end_small| |>|
+
+.. sourcecode:: python
+
+    def attach_to(obj):
+        def attach(cls):
+            name = cls.__name__
+            setattr(obj, name, cls)
+        return attach
+
+|end_example|
+|end_scriptsize|
+
+Problem #3 solved
+==================
+
+|scriptsize|
+|column1|
+|example<| |small| model.py |end_small| |>|
+
+.. sourcecode:: python
+
+   class User(Entity):
+
+       name = Field(Unicode)
+       age = Field(Integer)
+
+|end_example|
+|column2|
+|pause|
+|example<| |small| admin.py |end_small| |>|
+
+.. sourcecode:: python
+
+   @attach_to(User):
+   class Admin(EntityAdmin):
+       verbose_name = 'User detail'
+       field_list = ['name', 'age']
+
+|end_example|
+|end_columns|
+|end_scriptsize|
+
+|pause|
+
+* Pros
+
+  - Simple is better than complex
+  - No metaclasses
+  - Much less magic
+
+* Cons
+
+  - None :-)
