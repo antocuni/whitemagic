@@ -449,3 +449,91 @@ Problem #2: the PyPy AST compiler
 .. image:: diagrams/AST-p4.pdf
    :align: center
    :scale: 25%
+
+Spell #2: __extend__
+=====================
+
+|scriptsize|
+|example<| |small| python |end_small| |>|
+
+.. sourcecode:: python
+
+    >>> from magic import extendabletype
+    >>> class A(object):
+    ...     __metaclass__ = extendabletype
+    ...     def foo(self):
+    ...         print 'foo'
+    ... 
+    >>> obj = A()
+    >>> obj.foo()
+    foo
+
+|pause|
+
+.. sourcecode:: python
+
+    >>> class __extend__(A):
+    ...     def bar(self):
+    ...         print 'bar'
+    ... 
+    >>> obj.foo()
+    foo
+    >>> obj.bar()
+    bar
+
+|end_example|
+|end_scriptsize|
+
+
+Metaclasses for dummies
+=======================
+
+* Everything is an object
+
+* Every object has a type (a class)
+
+* A class is an object
+
+* The class of a class: metaclass
+
+* ``class`` statement --> metaclass instantiation
+
+
+``class`` statement
+===================
+
+.. image:: diagrams/metaclass-p0.pdf
+   :align: center
+   :scale: 35%
+
+
+``class`` statement
+===================
+
+.. image:: diagrams/metaclass-p1.pdf
+   :align: center
+   :scale: 35%
+
+
+``class`` statement
+===================
+
+.. image:: diagrams/metaclass-p2.pdf
+   :align: center
+   :scale: 35%
+
+
+``class`` statement
+===================
+
+.. image:: diagrams/metaclass-p3.pdf
+   :align: center
+   :scale: 35%
+
+
+``class`` statement
+===================
+
+.. image:: diagrams/metaclass-p4.pdf
+   :align: center
+   :scale: 35%
