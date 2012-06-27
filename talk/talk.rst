@@ -18,8 +18,8 @@ About me
 - http://antocuni.eu
 
 
-About this talk
-================
+About this talk (1)
+====================
 
 - a collection of hacks :-)
 
@@ -34,6 +34,22 @@ About this talk
 - they improve the rest of the code
 
 - (you might not like them)
+
+About this talk (2)
+====================
+
+- Learn about internals and/or advanced Python
+
+  * function and code objects
+
+  * bytecode
+
+  * metaclasses
+
+  * decorators
+
+  * ...
+
 
 
 Python
