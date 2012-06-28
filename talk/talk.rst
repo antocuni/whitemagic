@@ -48,6 +48,8 @@ About this talk (2)
 
   * decorators
 
+  * import logic
+
   * ...
 
 
@@ -674,7 +676,6 @@ Problem #2 solved
   - unobvious at first
 
 |end_small|
-
 |end_columns|
 
 
@@ -971,4 +972,151 @@ A step forward (2)
 
   - but explicit
 
-* ...
+* Goal: turn global state into local
+
+* `N` indepentent
+
+  - ``__metadata__`` & co.
+
+  - ``model.User``
+
+|pause|
+
+* Multiple copies of the same module
+
+* Modules are singleton
+
+* Cannot rely on ``import``
+
+
+``import`` logic (simplified)
+==============================
+
+* ``import foo``
+
+  - find ``foo.py``
+
+  - this is a whole mess of its own :-)
+
+|pause|
+|scriptsize|
+|example<| |small| import foo |end_small| |>|
+
+.. sourcecode:: python
+
+    mod = types.ModuleType('foo')          # 1. create the module object
+    mod.__file__ = '/path/to/foo.py'
+
+    sys.modules['foo'] = mod               # 2. update sys.modules
+
+    src = open('/path/to/foo.py').read()   # 3. compile&exec the code
+    exec src in mod.__dict__
+
+|end_example|
+|end_scriptsize|
+
+
+
+
+Spell #4: import_model (1)
+==========================
+
+|scriptsize|
+|example<| |small| db.py |end_small| |>|
+
+.. sourcecode:: python
+
+    class Database(object):
+
+        def __init__(self, url, modelfile):
+            self.url = url
+            self.session = sqlalchemy.orm.scoped_session(
+                                sqlalchemy.orm.sessionmaker())
+            self.metadata = sqlalchemy.MetaData(bind=url)
+            self.collection = elixir.GlobalEntityCollection()
+            self.import_model(modelfile)
+            elixir.setup_entities(self.collection)
+
+        def import_model(self, filename):
+            ...
+
+        def create_all(self, *args, **kwds):
+            self.metadata.create_all(*args, **kwds)
+
+    db = Database('sqlite:///db.sqlite')
+    db.create_all()
+    myuser = db.model.User('antocuni', 30)
+
+|end_example|
+|end_scriptsize|
+
+
+Spell #4: import_model (2)
+==========================
+
+|scriptsize|
+|example<| |small| db.py |end_small| |>|
+
+.. sourcecode:: python
+
+    def import_model(self, filename):
+        # 1. create the module object
+        self.model = types.ModuleType('model')
+        self.model.__file__ = filename
+        # 2. update sys.modules
+        assert 'model' not in sys.modules
+        sys.modules['model'] = self.model
+
+        try:
+            # inject the "local" state!
+            self.model.__session__ = self.session
+            self.model.__metadata__ = self.metadata
+            self.model.__collection__ = self.collection
+
+            # 3. compile&exec the code
+            src = open(filename).read()
+            code = compile(src, filename, 'exec')
+            exec src in self.model.__dict__
+        finally:
+            # (Python doesn't do it usually :-))
+            del sys.modules['model']
+
+|end_example|
+|end_scriptsize|
+
+
+Problem #4 solved
+==================
+
+|scriptsize|
+|example<| |small| test_model.py |end_small| |>|
+
+.. sourcecode:: python
+
+    def test_user():
+      url = "sqlite:///tmp/db.tmp"
+      db = Database(url, '/path/to/model.py')
+      db.create_all()
+      myuser = db.model.User( 'antocuni', 30)
+      ...
+
+|end_example|
+|end_scriptsize|
+
+|pause|
+
+* Pros
+
+  - testable
+
+  - multiple DB
+
+  - ``model.py`` kept simple
+
+  - magic well contained
+
+* Cons
+
+  - complex
+
+  - ``db1.model.User != db2.model.User``
