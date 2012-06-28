@@ -875,3 +875,100 @@ Problem #3 solved
 * Cons
 
   - None :-)
+
+
+Problem #4: implicit global state
+===================================
+
+* ``elixir``
+
+  - declarative layer on top of SQLAlchemy
+
+  - (precursor of ``sqlalchemy.declarative``)
+
+|pause|
+
+|scriptsize|
+|example<| |small| model.py |end_small| |>|
+
+.. sourcecode:: python
+
+    from elixir import (Entity, Field, Unicode, Integer, 
+                        metadata, setup_all, create_all)
+
+    metadata.bind = "sqlite:///db.sqlite"
+
+    class User(Entity):
+        name = Field(Unicode)
+        age = Field(Integer)
+
+
+    setup_all()
+    create_all()
+    # ...
+
+|end_example|
+|end_scriptsize|
+
+Global state
+=============
+
+* Global state is evil
+
+  - that's it
+
+  - implicit is even worse
+
+|pause|
+
+* Hard to test
+
+  - no isolation for tests
+
+  - persistent side effects (e.g. DB)
+
+|pause|
+
+* Goal
+
+  - multiple, isolated, independent DBs
+
+  - one DB per test (or group of tests)
+
+A step forward (1)
+==================
+
+|scriptsize|
+|example<| |small| model.py |end_small| |>|
+
+.. sourcecode:: python
+
+    import sqlalchemy
+    from elixir import (Entity, Field, Unicode, Integer,
+                        setup_entities, GlobalEntityCollection)
+
+    __session__ = sqlalchemy.orm.scoped_session(
+                        sqlalchemy.orm.sessionmaker())
+    __metadata__ = sqlalchemy.MetaData(bind="sqlite:///db.sqlite")
+    __collection__ = GlobalEntityCollection()
+
+
+    class User(Entity):
+        name = Field(Unicode)
+        age = Field(Integer)
+
+    if __name__ == '__main__':
+        setup_entities(__collection__)
+        __metadata__.create_all()
+
+|end_example|
+|end_scriptsize|
+
+A step forward (2)
+==================
+
+* Still global state
+
+  - but explicit
+
+* ...
