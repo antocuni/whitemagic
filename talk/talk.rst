@@ -50,8 +50,6 @@ About this talk (2)
 
   * import logic
 
-  * ...
-
 
 
 Python
@@ -1120,3 +1118,47 @@ Problem #4 solved
   - complex
 
   - ``db1.model.User != db2.model.User``
+
+
+Conclusion
+===========
+
+* Magic might be helpful
+
+  - code reuse
+
+  - readability
+
+  - testability
+
+* Use with care
+
+  - only if you **know** what you are doing
+
+  - lots of comments, please :-)
+
+|pause|
+|small|
+`Debugging is twice as hard as writing the code in the first place. Therefore,
+if you write the code as cleverly as possible, you are, by definition, not
+smart enough to debug it.`
+
+   (Brian Kernighan)
+
+|end_small|
+
+
+Contacts, Q&A
+==============
+
+- |small| http://bitbucket.org/antocuni/whitemagic |end_small|
+
+- twitter: @antocuni
+
+- Available for consultancy & training:
+
+  * http://antocuni.eu
+
+  * info@antocuni.eu
+
+- Any question?
