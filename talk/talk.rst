@@ -299,45 +299,10 @@ Spell #1: ``rebind_globals`` (1)
 ``LOAD_GLOBAL`` explained
 ==========================
 
-.. image:: diagrams/LOAD_GLOBAL-p0.pdf
+.. animage:: diagrams/LOAD_GLOBAL-p*.pdf
    :align: center
    :scale: 30%
 
-``LOAD_GLOBAL`` explained
-==========================
-
-.. image:: diagrams/LOAD_GLOBAL-p1.pdf
-   :align: center
-   :scale: 30%
-
-``LOAD_GLOBAL`` explained
-==========================
-
-.. image:: diagrams/LOAD_GLOBAL-p2.pdf
-   :align: center
-   :scale: 30%
-
-``LOAD_GLOBAL`` explained
-==========================
-
-.. image:: diagrams/LOAD_GLOBAL-p3.pdf
-   :align: center
-   :scale: 30%
-
-``LOAD_GLOBAL`` explained
-==========================
-
-.. image:: diagrams/LOAD_GLOBAL-p4.pdf
-   :align: center
-   :scale: 30%
-
-
-``LOAD_GLOBAL`` explained
-==========================
-
-.. image:: diagrams/LOAD_GLOBAL-p5.pdf
-   :align: center
-   :scale: 30%
 
 
 Spell #1: ``rebind_globals`` (2)
@@ -435,37 +400,10 @@ Problem #2: Open Classes
 Problem #2: the PyPy AST compiler
 =================================
 
-.. image:: diagrams/AST-p0.pdf
+.. animage:: diagrams/AST-p*.pdf
    :align: center
    :scale: 25%
 
-Problem #2: the PyPy AST compiler
-=================================
-
-.. image:: diagrams/AST-p1.pdf
-   :align: center
-   :scale: 25%
-
-Problem #2: the PyPy AST compiler
-=================================
-
-.. image:: diagrams/AST-p2.pdf
-   :align: center
-   :scale: 25%
-
-Problem #2: the PyPy AST compiler
-=================================
-
-.. image:: diagrams/AST-p3.pdf
-   :align: center
-   :scale: 25%
-
-Problem #2: the PyPy AST compiler
-=================================
-
-.. image:: diagrams/AST-p4.pdf
-   :align: center
-   :scale: 25%
 
 Spell #2: __extend__ (1)
 ========================
@@ -519,39 +457,7 @@ Metaclasses for dummies (1)
 ``class`` statement
 ===================
 
-.. image:: diagrams/metaclass-p0.pdf
-   :align: center
-   :scale: 35%
-
-
-``class`` statement
-===================
-
-.. image:: diagrams/metaclass-p1.pdf
-   :align: center
-   :scale: 35%
-
-
-``class`` statement
-===================
-
-.. image:: diagrams/metaclass-p2.pdf
-   :align: center
-   :scale: 35%
-
-
-``class`` statement
-===================
-
-.. image:: diagrams/metaclass-p3.pdf
-   :align: center
-   :scale: 35%
-
-
-``class`` statement
-===================
-
-.. image:: diagrams/metaclass-p4.pdf
+.. animage:: diagrams/metaclass-p*.pdf
    :align: center
    :scale: 35%
 
