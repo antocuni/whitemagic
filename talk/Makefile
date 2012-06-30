@@ -17,10 +17,10 @@ xpdf: talk.pdf
 	xpdf talk.pdf &
 
 diagrams/LOAD_GLOBAL-p0.pdf: diagrams/LOAD_GLOBAL.svg
-	cd diagrams && ./inkscapeslide.py LOAD_GLOBAL.svg
+	cd diagrams && inkscapeslide.py LOAD_GLOBAL.svg
 
 diagrams/AST-p0.pdf: diagrams/AST.svg
-	cd diagrams && ./inkscapeslide.py AST.svg
+	cd diagrams && inkscapeslide.py AST.svg
 
 diagrams/metaclass-p0.pdf: diagrams/metaclass.svg
-	cd diagrams && ./inkscapeslide.py metaclass.svg
+	cd diagrams && inkscapeslide.py metaclass.svg
