@@ -22,3 +22,12 @@ def test_extendabletype():
     class __extend__(A, B):
         bar = 43
     assert A.bar == B.bar == 43
+
+
+def test_attachto():
+    class Foo:
+        pass
+    @magic.attach_to(Foo)
+    class Bar:
+        x = 42
+    assert Foo.Bar.x == 42
