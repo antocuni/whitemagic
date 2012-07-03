@@ -782,7 +782,145 @@ Problem #3 solved
   - None :-)
 
 
-Problem #4: implicit global state
+Problem #4: quicker turnaround time (1)
+========================================
+
+* Developing new ``gdb`` commands
+
+|scriptsize|
+|example<| |small| gdbdemo.py |end_small| |>|
+
+.. sourcecode:: python
+
+    import gdb
+    class MyCommand(gdb.Command):
+        def __init__(self):
+            gdb.Command.__init__(self, "mycmd", gdb.COMMAND_NONE)
+        def invoke(self, arg, from_tty):
+            print 'Hello from Python'
+
+    MyCommand() # register the command
+
+|end_example|
+|pause|
+|example<| |small| gdb |end_small| |>|
+
+.. sourcecode:: sh
+
+    $ PYTHONPATH="" gdb
+    GNU gdb (Ubuntu/Linaro 7.3-0ubuntu2) 7.3-2011.08
+    ...
+    (gdb) python import gdbdemo
+    (gdb) mycmd
+    Hello from Python
+    (gdb) 
+
+|end_example|
+|end_scriptsize|
+
+Problem #4: quicker turnaround time (2)
+========================================
+
+* Annoying to develop
+
+* Several steps to do every time:
+
+  - start gdb
+
+  - start the program
+
+  - run until a certain point
+
+  - try your command
+
+
+Spell #4: reload & rebind __class__
+===================================
+
+|scriptsize|
+|example<| |small| gdbdemo.py |end_small| |>|
+
+.. sourcecode:: python
+
+    import gdb
+
+    class MyCommand(gdb.Command):
+        def __init__(self):
+            gdb.Command.__init__(self, "mycmd", gdb.COMMAND_NONE)
+
+        def invoke(self, arg, from_tty):
+            import gdbdemo2
+            reload(gdbdemo2)
+            self.__class__ = gdbdemo2.MyCommand
+            self.do_invoke(arg, from_tty)
+
+        def do_invoke(self, arg, from_tty):
+            print 'Hello from Python'
+
+    MyCommand() # register the command
+
+|end_example|
+|end_scriptsize|
+
+
+Method lookup
+==========================
+
+.. animage:: diagrams/__class__-p*.pdf
+   :align: center
+   :scale: 40%
+
+
+Problem #4 solved
+==================
+
+* Only during development
+
+* Pros
+
+  - Quicker turnaround
+
+  - Useful in various situations
+
+* Cons
+
+  - Fragile
+
+  - Confusion++ (two different classes with the same name)
+
+  - Does not work in more complex cases
+
+
+Bonus spell
+===========
+
+* How much time is left?
+
+|pause|
+
+.. raw:: latex
+
+   \vspace{1.2cm}
+
+|example<| |small| bonus.py |end_small| |>|
+
+.. sourcecode:: python
+
+   import time
+   time.go_back(minutes=10)
+
+|end_example|
+
+.. raw:: latex
+
+   \vspace{0.5cm}
+
+|pause|
+
+* How much time is left?
+
+
+Problem #5: implicit global state
 ===================================
 
 * ``elixir``
@@ -922,7 +1060,7 @@ A step forward (2)
 
 
 
-Spell #4: import_model (1)
+Spell #5: import_model (1)
 ==========================
 
 |scriptsize|
@@ -955,7 +1093,7 @@ Spell #4: import_model (1)
 |end_scriptsize|
 
 
-Spell #4: import_model (2)
+Spell #5: import_model (2)
 ==========================
 
 |scriptsize|
@@ -989,7 +1127,7 @@ Spell #4: import_model (2)
 |end_scriptsize|
 
 
-Problem #4 solved
+Problem #5 solved
 ==================
 
 |scriptsize|
@@ -1024,6 +1162,7 @@ Problem #4 solved
   - complex
 
   - ``db1.model.User != db2.model.User``
+
 
 
 Conclusion
